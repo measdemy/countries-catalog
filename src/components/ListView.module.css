@@ -1,0 +1,15 @@
+.tableData {
+  @apply w-[98%] text-sm text-left text-gray-500 dark:text-gray-400 mx-auto;
+}
+
+.tableData thead {
+  @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+}
+
+.tableData tbody tr {
+  @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
+}
+
+.heading {
+  @apply text-center p-4 text-lg font-bold;
+}
