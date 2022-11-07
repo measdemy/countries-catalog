@@ -2,8 +2,8 @@ import { ACTION_TYPES } from './countryAction';
 
 export const INITIAL_STATE = {
   loading: false,
-  data: [],
   error: false,
+  data: [],
 };
 
 export const countryReducer = (state, action) => {

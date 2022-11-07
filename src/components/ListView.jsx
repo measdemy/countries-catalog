@@ -2,10 +2,16 @@ import React from 'react';
 import styles from './ListView.module.css';
 import PropTypes from 'prop-types';
 
-const ListView = ({ countries }) => {
+const ListView = ({ countries, firstPage, lastPage }) => {
+  const currentItem = countries.data.slice(firstPage, lastPage);
+  const range = [];
+  for (let i = firstPage + 1; i < lastPage + 1; i++) {
+    range.push(i);
+  }
+
   return (
     <>
-      <h1 className={styles.heading}>Countries Catalog</h1>
+      {/* <h1 className={styles.heading}>Countries Catalog</h1> */}
       <table className={styles.tableData}>
         <thead>
           <tr>
@@ -20,9 +26,9 @@ const ListView = ({ countries }) => {
           </tr>
         </thead>
         <tbody>
-          {countries.data.map((item, index) => (
+          {currentItem.map((item, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
+              <td>{range[index]}</td>
               <td>
                 <img src={item.flags.png} alt="flag" width={15} />
               </td>
