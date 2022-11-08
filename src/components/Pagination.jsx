@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Pagination.module.css';
+import PropTypes from 'prop-types';
 
 const Pagination = ({ totalPage, handleClick, currentPage }) => {
   return (
@@ -25,6 +26,12 @@ const Pagination = ({ totalPage, handleClick, currentPage }) => {
       </ul>
     </nav>
   );
+};
+
+Pagination.propTypes = {
+  totalPage: PropTypes.array,
+  handleClick: PropTypes.func,
+  currentPage: PropTypes.number,
 };
 
 export default Pagination;

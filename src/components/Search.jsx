@@ -1,11 +1,25 @@
 import React from 'react';
 import styles from './Search.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import useApi from '../hooks/useApi';
+import { searchByCountry } from '../api/countries';
+import PropTypes from 'prop-types';
 
-const Search = () => {
+const Search = ({ setCountries }) => {
   const [inputText, setInputText] = useState('');
+  const searchByCountryApi = useApi(searchByCountry);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchByCountryApi.request(inputText);
+  };
+
+  useEffect(() => {
+    setCountries(searchByCountryApi.state);
+  }, [searchByCountryApi.state]);
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label htmlFor="default-search">Search</label>
       <div className="relative">
         <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -40,6 +54,10 @@ const Search = () => {
       </div>
     </form>
   );
+};
+
+Search.propTypes = {
+  setCountries: PropTypes.func,
 };
 
 export default Search;

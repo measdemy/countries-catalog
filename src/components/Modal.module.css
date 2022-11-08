@@ -1,0 +1,39 @@
+.container {
+  @apply overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center p-4 w-full md:inset-0 md:h-full;
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.sub-container {
+  @apply relative w-[50%] h-full md:h-auto mx-auto;
+  transform: translateY(50%);
+}
+
+.modal {
+  @apply relative bg-white rounded-lg dark:bg-gray-700;
+}
+
+.header {
+  @apply flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600;
+}
+
+.heading {
+  @apply text-xl font-semibold text-gray-900 dark:text-white;
+}
+
+.close-btn {
+  @apply text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white;
+}
+
+.title {
+  @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
+}
+
+.text {
+  @apply text-blue-900;
+}
+
+.shadow {
+  box-shadow: 0 0 #0000;
+}
+/* box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow); */

@@ -10,7 +10,7 @@ export const countryReducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPES.FETCH_START:
       return {
-        loading: false,
+        loading: true,
         error: false,
         data: [],
       };
@@ -23,6 +23,7 @@ export const countryReducer = (state, action) => {
     case ACTION_TYPES.FETCH_ERROR:
       return {
         ...state,
+        loading: false,
         error: true,
       };
   }
