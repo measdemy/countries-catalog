@@ -56,7 +56,7 @@ const ListView = ({ countries, firstPage, lastPage, handleDetail }) => {
         ) : (
           <tbody>
             {currentItem?.map((item, index) => (
-              <tr key={index} onClick={() => handleDetail(index)}>
+              <tr key={index} onClick={() => handleDetail(range[index] - 1)}>
                 <td>{range[index]}</td>
                 <td>
                   <img src={item.flags.png} alt="flag" width={15} />

@@ -14,7 +14,6 @@ function App() {
   const getAllCountriesApi = useApi(getAllCountries);
   const [countries, setCountries] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [perPage, setPerPage] = useState(25);
   const [isOpen, setIsopen] = useState(false);
   const [recordId, setRecordId] = useState();
 
@@ -25,7 +24,7 @@ function App() {
   useEffect(() => {
     setCountries(getAllCountriesApi.state);
   }, [getAllCountriesApi.state]);
-  console.log('countries', countries);
+
   const handleClick = (item) => {
     setCurrentPage(item);
   };
@@ -50,7 +49,14 @@ function App() {
       </h1>
       <div className="flex items-center">
         <Filter countries={countries} setCountries={setCountries} />
-        <Search setCountries={setCountries} />
+        <button
+          onClick={() => setCountries(getAllCountriesApi.state)}
+          type="button"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 ml-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          All
+        </button>
+        <Search setCountries={setCountries} setCurrentPage={setCurrentPage} />
       </div>
       <ListView
         countries={countries}
@@ -63,6 +69,7 @@ function App() {
           currentPage={currentPage}
           totalPage={pageNumbers}
           handleClick={handleClick}
+          setCurrentPage={setCurrentPage}
         />
       )}
       {isOpen && (

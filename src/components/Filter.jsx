@@ -4,21 +4,16 @@ import PropTypes from 'prop-types';
 
 const Filter = ({ countries, setCountries }) => {
   const [isDropdown, setIsDropdown] = useState(false);
-  const [radio, setRadio] = useState('Asc');
+  const [radio, setRadio] = useState('');
 
   const handleChange = (e) => {
     setRadio(e.target.value);
     setIsDropdown(!isDropdown);
-    let result = [];
-    if (e.target.value === 'Asc') {
-      result = countries?.data?.sort(function (a, b) {
-        return a.name.official.localeCompare(b.name.official);
-      });
-    } else {
-      result = countries?.data?.sort(function (a, b) {
-        return b.name.official.localeCompare(a.name.official);
-      });
-    }
+    const result = countries?.data?.sort(function (a, b) {
+      return e.target.value === 'Asc'
+        ? a.name.official.localeCompare(b.name.official)
+        : b.name.official.localeCompare(a.name.official);
+    });
 
     setCountries((prev) => {
       return { ...prev, result };
@@ -47,7 +42,7 @@ const Filter = ({ countries, setCountries }) => {
             clipRule="evenodd"
           ></path>
         </svg>
-        Sorting by country/{radio}
+        Sort country by {radio}
         <svg
           className="ml-2 w-3 h-3"
           aria-hidden="true"
@@ -75,13 +70,10 @@ const Filter = ({ countries, setCountries }) => {
         <ul aria-labelledby="dropdownRadioButton" onChange={handleChange}>
           <li>
             <div className={styles.item}>
-              <input
-                defaultChecked
-                id="asc"
-                type="radio"
-                value="Asc"
-                name="filter-radio"
-              />
+              <label htmlFor="default">Short by Country</label>
+            </div>
+            <div className={styles.item}>
+              <input id="asc" type="radio" value="Asc" name="filter-radio" />
               <label htmlFor="asc">Asc</label>
             </div>
           </li>

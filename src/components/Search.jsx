@@ -5,13 +5,14 @@ import useApi from '../hooks/useApi';
 import { searchByCountry } from '../api/countries';
 import PropTypes from 'prop-types';
 
-const Search = ({ setCountries }) => {
+const Search = ({ setCountries, setCurrentPage }) => {
   const [inputText, setInputText] = useState('');
   const searchByCountryApi = useApi(searchByCountry);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     searchByCountryApi.request(inputText);
+    setCurrentPage(1);
   };
 
   useEffect(() => {
@@ -58,6 +59,7 @@ const Search = ({ setCountries }) => {
 
 Search.propTypes = {
   setCountries: PropTypes.func,
+  setCurrentPage: PropTypes.func,
 };
 
 export default Search;
